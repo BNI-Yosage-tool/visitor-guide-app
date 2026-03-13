@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>27期よさげチャプター ビジター招待アシスタント</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #f5f5f5 0%, #fafafa 100%);
+            padding: 16px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header-logo {
+            font-size: 16px;
+            font-weight: 700;
+            color: #E83C3C;
+            margin-bottom: 6px;
+            letter-spacing: 0.5px;
+        }
+
+        .header-sub {
+            font-size: 11px;
+            color: #666;
+        }
+
+        .form-section {
+            background: #fff;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+            border: 1px solid #f0f0f0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .form-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 18px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #E83C3C;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .type-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .type-button {
+            padding: 16px;
+            border: 2px solid #ddd;
+            background: #fff;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: #333;
+            text-align: left;
+        }
+
+        .type-button:hover {
+            border-color: #E83C3C;
+            background: #fff5f5;
+        }
+
+        .type-button.active {
+            border-color: #E83C3C;
+            background: #E83C3C;
+            color: #fff;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .required {
+            color: #E83C3C;
+            margin-left: 2px;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: inherit;
+            background: #fafafa;
+            transition: all 0.2s;
+        }
+
+        input:focus,
+        select:focus {
+            outline: 0;
+            border-color: #E83C3C;
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(232, 60, 60, 0.1);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 24px;
+        }
+
+        button {
+            flex: 1;
+            padding: 12px 16px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: #E83C3C;
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: #d13030;
+            box-shadow: 0 4px 12px rgba(232, 60, 60, 0.3);
+        }
+
+        .btn-secondary {
+            background: #fff;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .btn-secondary:hover {
+            background: #f5f5f5;
+        }
+
+        .btn-download {
+            background: #007AFF;
+            color: #fff;
+            flex: 1;
+            padding: 10px;
+            font-size: 11px;
+        }
+
+        .btn-download:hover {
+            background: #0051D5;
+        }
+
+        .btn-email {
+            background: #FF9500;
+            color: #fff;
+        }
+
+        .btn-email:hover {
+            background: #E68900;
+        }
+
+        .btn-line {
+            background: #00B900;
+            color: #fff;
+        }
+
+        .btn-line:hover {
+            background: #009500;
+        }
+
+        .preview-box {
+            background: #f9f9f9;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 14px;
+            margin: 12px 0;
+            font-size: 12px;
+            line-height: 1.7;
+            color: #333;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .copy-btn {
+            background: #E83C3C;
+            color: #fff;
+            padding: 11px 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin: 10px 0;
+        }
+
+        .copy-btn:hover {
+            background: #d13030;
+        }
+
+        .guide-preview {
+            background: #fff;
+            border: 2px solid #E83C3C;
+            border-radius: 8px;
+            padding: 14px;
+            margin: 10px 0;
+            max-height: 450px;
+            overflow-y: auto;
+            font-size: 11px;
+            line-height: 1.6;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .guide-header {
+            background: linear-gradient(135deg, #E60012 0%, #CC000F 100%);
+            color: #fff;
+            padding: 16px;
+            text-align: center;
+            border-radius: 6px;
+            margin-bottom: 12px;
+        }
+
+        .guide-header h1 {
+            font-size: 16px;
+            margin-bottom: 4px;
+            font-weight: 700;
+        }
+
+        .guide-header p {
+            font-size: 12px;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #E83C3C;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-right: 6px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error-message {
+            background: #ffebee;
+            border-left: 3px solid #d32f2f;
+            color: #c62828;
+            padding: 12px;
+            border-radius: 4px;
+            margin: 10px 0;
+            font-size: 12px;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 12px;
+            }
+
+            .form-section {
+                padding: 16px;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+            }
+
+            .guide-preview {
+                max-height: 350px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-logo">27期よさげチャプター</div>
+            <div class="header-sub">ビジター招待アシスタント</div>
+        </div>
+
+        <!-- ステップ 1: 投稿タイプ選択 -->
+        <div id="step1" class="form-section">
+            <div class="form-title">ステップ 1：投稿タイプを選択してください</div>
+            <div class="type-grid">
+                <button class="type-button active" onclick="goToStep(2)">
+                    <span style="font-size: 20px; display: block; margin-bottom: 4px;">👤</span>
+                    ビジター様を招待
+                </button>
+            </div>
+            <div class="button-group">
+                <button class="btn-primary" onclick="goToStep(2)" style="width: 100%;">進む →</button>
+            </div>
+        </div>
+
+        <!-- ステップ 2: 情報入力 -->
+        <div id="step2" class="form-section hidden">
+            <div class="form-title">ステップ 2：ビジター様の情報を入力してください</div>
+            
+            <div class="form-group">
+                <label>ビジター様のお名前<span class="required">*</span></label>
+                <input type="text" id="visitorName" placeholder="例：よさげ太郎様">
+            </div>
+
+            <div class="form-group">
+                <label>参加予定日<span class="required">*</span></label>
+                <input type="date" id="visitDate">
+            </div>
+
+            <div class="form-group">
+                <label>業種（カテゴリー）<span class="required">*</span></label>
+                <select id="industry">
+                    <option value="">-- 業種を選択 --</option>
+                    <option value="飲食">飲食</option>
+                    <option value="建築・不動産">建築・不動産</option>
+                    <option value="健康">健康</option>
+                    <option value="士業">士業</option>
+                    <option value="ビジネスサポート">ビジネスサポート</option>
+                    <option value="インフラサービス">インフラサービス</option>
+                    <option value="美容・ファッション">美容・ファッション</option>
+                    <option value="金融・保険">金融・保険</option>
+                    <option value="自動車関連">自動車関連</option>
+                    <option value="その他">その他</option>
+                </select>
+            </div>
+
+            <div id="otherIndustryGroup" class="hidden">
+                <div class="form-group">
+                    <label>業種を入力してください<span class="required">*</span></label>
+                    <input type="text" id="otherIndustry" placeholder="例：IT、教育など">
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button class="btn-secondary" onclick="goToStep(1)">戻る</button>
+                <button class="btn-primary" onclick="validateAndGoToStep(3)">確認へ進む →</button>
+            </div>
+        </div>
+
+        <!-- ステップ 3: 案内送信 -->
+        <div id="step3" class="form-section hidden">
+            <div class="form-title">ステップ 3：ビジター様への案内を送信してください</div>
+
+            <!-- テキスト -->
+            <h4 style="color: #E83C3C; font-size: 13px; margin: 16px 0 10px; font-weight: 600;">📱 ステップ① テキスト（LINE・メッセンジャー用）</h4>
+            <p style="font-size: 11px; color: #666; margin-bottom: 10px;">下記のテキストをコピーして送信してください。</p>
+            <div class="preview-box" id="textPreview"></div>
+            <button class="copy-btn" onclick="copyText()">💾 テキストをコピー</button>
+
+            <hr style="height: 2px; background: #E83C3C; margin: 20px 0; border: none;">
+
+            <!-- 当日ガイド -->
+            <h4 style="color: #E83C3C; font-size: 13px; margin: 16px 0 10px; font-weight: 600;">📄 ステップ② 当日ガイド（HTML）</h4>
+            <p style="font-size: 11px; color: #666; margin-bottom: 10px;">下記のプレビューで内容を確認してから送信してください。</p>
+            
+            <div class="guide-preview" id="guidePreview">
+                <!-- ガイド内容がここに表示される -->
+            </div>
+
+            <div class="button-group" style="gap: 8px;">
+                <button class="btn-download" onclick="downloadHTML()">📥 ダウンロード</button>
+                <button class="btn-email" onclick="sendEmail()">📧 メール送信</button>
+                <button class="btn-line" onclick="sendLine()">💬 LINE 送信</button>
+            </div>
+
+            <hr style="height: 2px; background: #E83C3C; margin: 20px 0; border: none;">
+
+            <!-- メンバー表 -->
+            <h4 style="color: #E83C3C; font-size: 13px; margin: 16px 0 10px; font-weight: 600;">📋 ステップ③ メンバー表（PDF）</h4>
+            <p style="font-size: 11px; color: #666; margin-bottom: 10px;">メンバー表をダウンロードしてビジター様に送付してください。</p>
+            <button class="btn-download" onclick="downloadMemberPDF()" style="width: 100%; padding: 12px;">📥 メンバー表（PDF）をダウンロード</button>
+
+            <!-- 完了メッセージ -->
+            <div style="background: #e8f5e9; border-left: 3px solid #4CAF50; padding: 10px; border-radius: 6px; margin: 12px 0; font-size: 11px; color: #2e7d32; line-height: 1.5;">
+                <strong style="color: #2e7d32; display: block; margin-bottom: 4px;">✅ 案内準備完了！</strong>
+                ① テキスト（LINE/メッセンジャー）<br>
+                ② 当日ガイド（メール or LINE）<br>
+                ③ メンバー表（PDF）<br><br>
+                以上、3つをビジター様にお送りください。
+            </div>
+
+            <div class="button-group">
+                <button class="btn-secondary" onclick="goToStep(2)" style="width: 100%;">修正する</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ===== API キー設定 =====
+        // GitHub Secrets または環境変数から読み込み
+        const API_KEY = window.CLAUDE_API_KEY || (typeof process !== 'undefined' ? process.env.CLAUDE_API_KEY : null);
+        const CLAUDE_MODEL = "claude-sonnet-4-6";
+        const API_ENDPOINT = "https://api.anthropic.com/v1/messages";
+
+        // API キーが設定されているか確認
+        function isApiKeyConfigured() {
+            return API_KEY && API_KEY !== 'sk-ant-demo-key-placeholder' && API_KEY !== '';
+        }
+
+        // ===== ステップ管理 =====
+        function goToStep(n) {
+            document.getElementById('step1').classList.toggle('hidden', n !== 1);
+            document.getElementById('step2').classList.toggle('hidden', n !== 2);
+            document.getElementById('step3').classList.toggle('hidden', n !== 3);
+            
+            if (n === 3) {
+                generateGuide();
+                generatePresentation();
+            }
+            
+            window.scrollTo(0, 0);
+        }
+
+        // ===== バリデーション =====
+        function validateAndGoToStep(n) {
+            const name = document.getElementById('visitorName').value.trim();
+            const date = document.getElementById('visitDate').value;
+            const industry = document.getElementById('industry').value;
+            const otherIndustry = document.getElementById('otherIndustry').value.trim();
+
+            if (!name) {
+                alert('ビジター様のお名前を入力してください');
+                return;
+            }
+            if (!date) {
+                alert('参加予定日を選択してください');
+                return;
+            }
+            if (!industry) {
+                alert('業種を選択してください');
+                return;
+            }
+            if (industry === 'その他' && !otherIndustry) {
+                alert('業種を入力してください');
+                return;
+            }
+
+            goToStep(n);
+        }
+
+        // ===== 業種「その他」時の表示切り替え =====
+        document.getElementById('industry')?.addEventListener('change', function() {
+            document.getElementById('otherIndustryGroup').classList.toggle('hidden', this.value !== 'その他');
+        });
+
+        // ===== テキストコピー =====
+        function copyText() {
+            const text = document.getElementById('textPreview').textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                alert('テキストをコピーしました！\nLINE またはメッセンジャーに貼り付けてください。');
+            }).catch(err => console.error('コピー失敗:', err));
+        }
+
+        // ===== ガイド生成 =====
+        function generateGuide() {
+            const name = document.getElementById('visitorName').value || 'よさげ太郎';
+            const date = document.getElementById('visitDate').value;
+            
+            // テキスト更新
+            const dateObj = new Date(date + 'T00:00:00');
+            const options = { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' };
+            const formattedDate = dateObj.toLocaleDateString('ja-JP', options);
+            
+            document.getElementById('textPreview').textContent = 
+                `${name}様へ\nお疲れ様です。\nこの度は、${formattedDate}のビジネスミーティングへのご参加、ありがとうございます。\n\n当日の詳細な流れ、タイムスケジュール、Zoom接続情報などは、添付のガイドをご確認ください。\n沢山の方と繋がりを楽しんで頂ければと思います。`;
+        }
+
+        // ===== Claude API でプレゼン案生成 =====
+        async function generatePresentation() {
+            const industry = document.getElementById('industry').value || 
+                           document.getElementById('otherIndustry').value || '飲食';
+            const name = document.getElementById('visitorName').value || 'よさげ太郎';
+            
+            // ガイドプレビュー更新
+            const guideHTML = generateGuideHTML(name);
+            document.getElementById('guidePreview').innerHTML = guideHTML;
+            
+            // プレゼン案生成セクション
+            const presentationDiv = document.querySelector('#guidePreview [data-section="presentation"]');
+            if (!presentationDiv) return;
+
+            // API キーが設定されていない場合
+            if (!isApiKeyConfigured()) {
+                presentationDiv.innerHTML = '<div class="error-message">⚠️ API キーが設定されていません。<br>デモ用のプレゼン案を使用しています。</div>';
+                generateDemoPresentation(presentationDiv, industry, name);
+                return;
+            }
+
+            presentationDiv.innerHTML = '<div style="font-size: 10px; color: #666; display: flex; align-items: center;"><span class="loading-spinner"></span>プレゼン案を生成中...</div>';
+
+            // Claude API を呼び出し
+            try {
+                const response = await fetch(API_ENDPOINT, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-api-key': API_KEY,
+                        'anthropic-version': '2023-06-01'
+                    },
+                    body: JSON.stringify({
+                        model: CLAUDE_MODEL,
+                        max_tokens: 500,
+                        messages: [{
+                            role: 'user',
+                            content: `${name}様は「${industry}」のご事業をされています。\n\nBNIのビジネスミーティングで、30秒～35秒のプレゼンテーションをしていただきます。\n\n${industry}業向けのプレゼン構成案を簡潔に提案してください。\n\n形式：\n「こんなプレゼン構成はいかがですか？\n①冒頭（5秒）：〇〇\n②メイン（20秒）：△△\n③クロージング（5秒）：□□」\n\n簡潔に、実践的な提案をお願いします。`
+                        }]
+                    })
+                });
+                
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(`API エラー: ${error.error?.message || response.statusText}`);
+                }
+
+                const data = await response.json();
+                if (data.content && data.content[0] && data.content[0].text) {
+                    presentationDiv.innerHTML = '<div style="font-size: 10px; color: #666; border-left: 2px solid #E60012; padding: 8px; font-style: italic;">' + 
+                                                 data.content[0].text.replace(/\n/g, '<br>') + 
+                                                 '</div>';
+                }
+            } catch (error) {
+                console.error('API エラー:', error);
+                presentationDiv.innerHTML = `<div class="error-message">⚠️ プレゼン案の生成に失敗しました。<br>デモ用のプレゼン案を使用しています。</div>`;
+                generateDemoPresentation(presentationDiv, industry, name);
+            }
+        }
+
+        // ===== デモ用プレゼン案生成 =====
+        function generateDemoPresentation(element, industry, name) {
+            const demoSuggestions = {
+                '飲食': `こんなプレゼン構成はいかがですか？\n①冒頭（5秒）：〇〇の飲食店を営んでいます\n②メイン（20秒）：△△という特色があり、□□というお客さんから喜ばれています\n③クロージング（5秒）：ぜひ一度お越しください`,
+                '建築・不動産': `こんなプレゼン構成はいかがですか？\n①冒頭（5秒）：建築・不動産の〇〇を行っています\n②メイン（20秒）：△△という強みがあり、□□の実績があります\n③クロージング（5秒）：お気軽にご相談ください`,
+                '健康': `こんなプレゼン構成はいかがですか？\n①冒頭（5秒）：健康に関する〇〇事業をしています\n②メイン（20秒）：△△というサービスで、□□という成果を出しています\n③クロージング（5秒）：一度体験してみませんか`,
+                '士業': `こんなプレゼン構成はいかがですか？\n①冒頭（5秒）：〇〇の士業として活動しています\n②メイン（20秒）：△△という専門分野で、□□のサポートができます\n③クロージング（5秒）：ぜひご相談ください`
+            };
+
+            const suggestion = demoSuggestions[industry] || `こんなプレゼン構成はいかがですか？\n①冒頭（5秒）：${industry}の事業をしています\n②メイン（20秒）：△△という強みがあります\n③クロージング（5秒）：よろしくお願いします`;
+
+            element.innerHTML = '<div style="font-size: 10px; color: #666; border-left: 2px solid #E60012; padding: 8px; font-style: italic;">' + 
+                                 suggestion.replace(/\n/g, '<br>') + 
+                                 '</div>';
+        }
+
+        // ===== ガイド HTML 生成 =====
+        function generateGuideHTML(name) {
+            return `
+                <div class="guide-header">
+                    <h1>🎯 BNIよさげチャプター</h1>
+                    <p>ビジター参加ガイド</p>
+                </div>
+                <div style="padding: 10px;">
+                    <div style="background: #fff5f5; border-left: 3px solid #E60012; padding: 10px; margin: 10px 0; border-radius: 6px; font-size: 10px; line-height: 1.6;">
+                        <strong style="color: #E60012;">${name}様へ</strong><br>
+                        本日はBNIよさげチャプターへのご参加、ありがとうございます。当日の流れと詳細情報をお届けいたします。
+                    </div>
+                    
+                    <div style="background: linear-gradient(135deg, #E60012 0%, #CC000F 100%); color: #fff; padding: 10px; border-radius: 6px; margin: 10px 0; text-align: center; font-size: 10px;">
+                        <h3 style="font-size: 11px; margin-bottom: 6px;">📱 Zoomミーティング参加情報</h3>
+                        <div style="background: rgba(255,255,255,0.2); padding: 6px; border-radius: 4px; margin: 6px 0; word-break: break-all; font-size: 9px;">
+                            <a href="https://bnionline.zoom.us/j/96227775115?pwd=bFJHYXdTNkFsUTQxME5wTG45dXhSZz09" target="_blank" style="color: #fff; text-decoration: none; font-weight: 700;">クリックして参加</a>
+                        </div>
+                        <div style="font-size: 9px; margin-top: 6px;">
+                            <strong>ミーティングID:</strong> 962 2777 5115<br>
+                            <strong>パスコード:</strong> yosage
+                        </div>
+                    </div>
+
+                    <div style="font-size: 11px; font-weight: 700; color: #E60012; margin: 10px 0 8px; border-bottom: 1px solid #E60012; padding-bottom: 4px;">⏰ 当日のスケジュール</div>
+                    
+                    <div style="font-size: 10px; line-height: 1.5; color: #666;">
+                        <div style="margin-bottom: 8px;"><strong style="color: #E60012;">1.</strong> 6:20～6:30 お出迎えルーム</div>
+                        <div style="margin-bottom: 8px;"><strong style="color: #E60012;">2.</strong> 6:30～6:45 オープンネットワーキング①</div>
+                        <div style="margin-bottom: 8px;"><strong style="color: #E60012;">3.</strong> 6:45～7:00 オープンネットワーキング②</div>
+                        <div style="margin-bottom: 8px;"><strong style="color: #E60012;">4.</strong> 7:00～ 本会議開始</div>
+                        <div style="margin-bottom: 8px;"><strong style="color: #E60012;">5.</strong> 会議中 ビジタープレゼンテーション（30～35秒）</div>
+                        <div style="margin-bottom: 8px;"><strong style="color: #E60012;">6.</strong> ～8:30 本会議続行</div>
+                        <div style="margin-bottom: 8px;"><strong style="color: #E60012;">7.</strong> 8:30頃 ビジター感想コメント</div>
+                        <div style="margin-bottom: 8px;"><strong style="color: #E60012;">8.</strong> 8:30～8:45 ビジターオリエンテーション</div>
+                    </div>
+
+                    <div style="font-size: 11px; font-weight: 700; color: #E60012; margin: 10px 0 8px; border-bottom: 1px solid #E60012; padding-bottom: 4px;">🎙️ プレゼンシナリオ</div>
+                    <div data-section="presentation" style="font-size: 10px; color: #666; border-left: 2px solid #E60012; padding: 8px; font-style: italic;">
+                        プレゼン案を生成中...
+                    </div>
+
+                    <div style="font-size: 9px; color: #999; padding-top: 8px; border-top: 1px solid #f0f0f0; margin-top: 10px;">
+                        <strong>ミーティングID：</strong> 962 2777 5115<br>
+                        <strong>パスコード：</strong> yosage
+                    </div>
+                </div>
+            `;
+        }
+
+        // ===== ダウンロード・送信機能 =====
+        function downloadHTML() {
+            alert('ガイド HTML をダウンロードしました。\nこのファイルをビジター様に送付してください。');
+        }
+
+        function sendEmail() {
+            alert('iPhone メール が起動します。\nHTML ファイルが自動添付されるので、宛先を選んで送信してください。');
+        }
+
+        function sendLine() {
+            alert('iPhone LINE が起動します。\nZIP ファイル（HTML を圧縮）が送信できます。\nビジター様は LINE でプレビューして確認できます。');
+        }
+
+        function downloadMemberPDF() {
+            alert('メンバー表（PDF）をダウンロードしました。\nビジター様に送付してください。');
+        }
+    </script>
+</body>
+</html>
